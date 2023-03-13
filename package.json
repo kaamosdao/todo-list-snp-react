@@ -1,5 +1,5 @@
 {
-  "name": "todo-list-vanilla",
+  "name": "todo-list-snp-react",
   "version": "1.0.0",
   "description": "Test task for SnP agency",
   "main": "src/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaamosdao/todo-list-vanilla-js.git"
+    "url": "git+https://github.com/kaamosdao/todo-list-snp-react.git"
   },
   "author": "Alexander Demidov",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kaamosdao/todo-list-vanilla-js/issues"
+    "url": "https://github.com/kaamosdao/todo-list-snp-react/issues"
   },
-  "homepage": "https://github.com/kaamosdao/todo-list-vanilla-js#readme",
+  "homepage": "https://github.com/kaamosdao/todo-list-snp-react#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
