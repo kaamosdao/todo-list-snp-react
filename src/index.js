@@ -1,5 +1,11 @@
+import ReactDOM from 'react-dom/client';
+import init from './init.jsx';
 import '../assets/styles/style.scss';
 
-import init from './init.js';
+const render = () => {
+  const root = ReactDOM.createRoot(document.querySelector('#root'));
+  const App = init();
+  root.render(App);
+};
 
-init();
+render();
