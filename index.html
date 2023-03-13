@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Todo List made via vanilla JS" />
+    <meta name="keywords" content="todos" />
+    <title>Todo List</title>
+    <link
+      rel="preload"
+      href="assets/fonts/roboto-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <main class="main">
+      <h1 class="main__title">Todos</h1>
+      <section class="todos">
+        <h2 class="todos__title visually-hidden">Todo form</h2>
+        <header class="todos__header todo-header todo-header--hide">
+          <h3 class="visually-hidden">Todo information and filter</h3>
+          <span class="todo-header__info"></span>
+          <ul class="todo-header__filter__list">
+            <li class="todo-header__filter-item">
+              <button class="button-filter button-filter--selected" type="button" name="all">All</button>
+            </li>
+            <li class="todo-header__filter-item">
+              <button class="button-filter" type="button" name="active">Active</button>
+            </li>
+            <li class="todo-header__filter-item">
+              <button class="button-filter" type="button" name="completed">Completed</button>
+            </li>
+          </ul>
+          <button class="todo-header__button-clear todo-header--hide" type="button">
+            Clear completed
+          </button>
+        </header>
+        <label class="todos__check-all">
+          <input class="visually-hidden todos__input-check" type="checkbox" id="all">
+          <span class="todos__checkbox-mark"></span>
+        </label>
+        <label class="visually-hidden" for="todo"> Todo </label>
+        <input
+          class="todos__input input-add-todo"
+          type="text"
+          name="todo"
+          id="todo"
+          placeholder="What needs to be done?"
+          required
+        />
+        <ul class="todos__list"></ul>
+      </section>
+    </main>
+  </body>
+</html>
