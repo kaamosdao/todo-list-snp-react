@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Main.module.scss';
 import TextField from './TextField';
 import TodosHeader from './TodosHeader';
+import styles from './Main.module.scss';
 
 const Main = () => {
   return (
