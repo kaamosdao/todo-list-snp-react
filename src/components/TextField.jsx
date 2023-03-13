@@ -5,7 +5,7 @@ import styles from './TextField.module.scss';
 const TextField = () => {
   return (
     <>
-      <label className={styles.checkAll}>
+      <label className={cn(styles.checkAll, styles.hide)}>
         <input
           className={cn('visually-hidden', styles.inputCheck)}
           type="checkbox"

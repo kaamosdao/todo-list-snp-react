@@ -6,7 +6,9 @@ const TodosHeader = () => {
   return (
     <header className={cn(styles.header, styles.hide)}>
       <h3 className="visually-hidden">Todo information and filter</h3>
-      <span className={styles.info}></span>
+      <span className={styles.info}>
+        <strong>0</strong> items left
+      </span>
       <ul className={styles.filterList}>
         <li>
           <button
