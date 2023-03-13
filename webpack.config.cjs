@@ -47,7 +47,14 @@ module.exports = {
         test: /\.(sa|sc|c)ss$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader' },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[local]-[hash:base64:5]',
+              },
+            },
+          },
           {
             loader: 'postcss-loader',
             options: {
@@ -74,7 +81,7 @@ module.exports = {
         generator: {
           filename: 'assets/img/[name][ext]',
         },
-     }
+      },
     ],
   },
 };
