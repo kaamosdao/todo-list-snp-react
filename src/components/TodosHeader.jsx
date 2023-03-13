@@ -7,8 +7,8 @@ const TodosHeader = () => {
     <header className={cn(styles.header, styles.hide)}>
       <h3 className="visually-hidden">Todo information and filter</h3>
       <span className={styles.info}></span>
-      <ul className={styles.filter}>
-        <li className={styles.filterItem}>
+      <ul className={styles.filterList}>
+        <li>
           <button
             className={cn(styles.buttonFilter, styles.buttonFilterSelected)}
             type="button"
@@ -17,12 +17,12 @@ const TodosHeader = () => {
             All
           </button>
         </li>
-        <li className={styles.filterItem}>
+        <li>
           <button className={styles.buttonFilter} type="button" name="active">
             Active
           </button>
         </li>
-        <li className={filterItem}>
+        <li>
           <button className={styles.buttonFilter} type="button" name="completed">
             Completed
           </button>
