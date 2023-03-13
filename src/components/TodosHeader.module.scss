@@ -1,0 +1,115 @@
+@import '../../assets/styles/global/variables.scss';
+
+.header {
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+  @include font(normal, 12px, 12px);
+  color: $grey400;
+
+  @media (min-width: $tablet-lg-width) {
+    margin-top: 15px;
+    @include font(normal, 14px, 14px);
+  }
+}
+
+.info {
+  margin-left: 10px;
+  @media (min-width: $tablet-lg-width) {
+    margin-left: 20px;
+  }
+}
+
+.filterList {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  gap: 10px;
+  margin: 0 10px 0 0;
+  padding: 0;
+  list-style-type: none;
+
+  @media (min-width: $tablet-width) {
+    position: absolute;
+    left: 50%;
+    gap: 10px;
+    margin: 0 0 0 -78px;
+  }
+
+  @media (min-width: $tablet-lg-width) {
+    position: absolute;
+    left: 50%;
+    gap: 20px;
+    margin: 0 0 0 -96px;
+  }
+
+  @media (min-width: $desktop-lg-width) {
+    margin-right: 20px;
+  }
+}
+
+.buttonFilter {
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 2px 5px;
+  @include font(normal, 12px, 12px);
+  color: $grey400;
+  border: none;
+  background: none;
+  border-radius: 2px;
+
+  @media (min-width: $tablet-lg-width) {
+    @include font(normal, 14px, 14px);
+  }
+}
+
+.buttonFilter:hover {
+  outline: 1px solid $orange200;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.buttonFilterSelected {
+  outline: 1px solid $orange300;
+}
+
+.buttonFilterSelected:hover {
+  outline: 1px solid $orange300;
+  opacity: 1;
+  cursor: default;
+}
+
+.buttonClear {
+  position: absolute;
+  top: -21px;
+  left: 10px;
+  padding: 0;
+  @include font(normal, 12px, 12px);
+  color: $grey400;
+  border: none;
+  background-color: transparent;
+
+  @media (min-width: $tablet-width) {
+    position: static;
+    margin-right: 20px;
+  }
+
+  @media (min-width: $tablet-lg-width) {
+    position: static;
+    margin-right: 20px;
+    @include font(normal, 14px, 12px);
+  }
+}
+
+.buttonClear:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
