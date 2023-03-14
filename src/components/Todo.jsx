@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from 'classNamenames';
+import cn from 'classnames';
 import styles from './Todo.module.scss';
 
 const Todo = ({ id, title }) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from './TextField';
 import TodosHeader from './TodosHeader';
+import TodosList from './TodosList';
 import styles from './Main.module.scss';
 
 const Main = () => {
@@ -11,7 +12,8 @@ const Main = () => {
         <h2 className="visually-hidden">Todo form</h2>
         <TodosHeader />
         <TextField />
-        <ul className="todos__list"></ul>
+        <TodosList />
+        {/* <ul className="todos__list"></ul> */}
       </section>
     </main>
   );
