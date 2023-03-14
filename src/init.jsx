@@ -39,10 +39,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import App from './App.jsx';
+import LocalStorageContext from './hooks/LocalStorageContext.jsx';
 import store from './slices/index.js';
 
-export default () => (
+export default (localStorage) => (
   <Provider store={store}>
-    <App />
+    <LocalStorageContext.Provider value={localStorage}>
+      <App />
+    </LocalStorageContext.Provider>
   </Provider>
 );
