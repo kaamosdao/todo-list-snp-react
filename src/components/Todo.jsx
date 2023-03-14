@@ -1,11 +1,12 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import cn from 'classnames';
-import styles from './Todo.module.scss';
 import { removeTodo } from '../slices/todoReducer';
+import styles from './Todo.module.scss';
 
 const Todo = ({ id, title }) => {
   const dispatch = useDispatch();
+
   const handleRemoveTodo = () => {
     dispatch(removeTodo(id));
   };
