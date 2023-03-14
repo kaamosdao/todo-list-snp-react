@@ -37,12 +37,12 @@
 // };
 
 import React from 'react';
-// import { Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import App from './App.jsx';
-// import store from './slices/index.js';
+import store from './slices/index.js';
 
 export default () => (
-  // <Provider store={store}>
+  <Provider store={store}>
     <App />
-  // </Provider>
+  </Provider>
 );
