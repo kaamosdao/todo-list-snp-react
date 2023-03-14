@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import cn from 'classnames';
+import classNames from 'classnames/bind';
 import { removeTodo, updateTodo } from '../slices/todoReducer';
 import styles from './Todo.module.scss';
+
+const cn = classNames.bind(styles);
 
 const Todo = ({ id, title, checked }) => {
   const dispatch = useDispatch();
@@ -21,14 +23,14 @@ const Todo = ({ id, title, checked }) => {
       <div className={styles.container}>
         <label className={styles.checkbox}>
           <input
-            className={cn('visually-hidden', styles.inputCheck)}
+            className={cn('visually-hidden', 'inputCheck')}
             type="checkbox"
             checked={checked}
             onChange={handleChecked}
           />
           <span className={styles.checkboxMark}></span>
         </label>
-        <p className={styles.title}>{title}</p>
+        <p className={cn('title', { 'todoCompleted': checked })}>{title}</p>
         <button
           className={styles.buttonDelete}
           type="button"
