@@ -1,11 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import cn from 'classnames';
-import { removeTodo } from '../slices/todoReducer';
+import { removeTodo, updateTodo } from '../slices/todoReducer';
 import styles from './Todo.module.scss';
 
-const Todo = ({ id, title }) => {
+const Todo = ({ id, title, checked }) => {
   const dispatch = useDispatch();
+
+  const handleChecked = (event) => {
+    const newTodo = { id, title, checked: event.target.checked };
+    dispatch(updateTodo(newTodo));
+  };
 
   const handleRemoveTodo = () => {
     dispatch(removeTodo(id));
@@ -18,6 +23,8 @@ const Todo = ({ id, title }) => {
           <input
             className={cn('visually-hidden', styles.inputCheck)}
             type="checkbox"
+            checked={checked}
+            onChange={handleChecked}
           />
           <span className={styles.checkboxMark}></span>
         </label>

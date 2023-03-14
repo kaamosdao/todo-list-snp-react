@@ -17,6 +17,7 @@ const TextField = () => {
     const newTodo = {
       id: _.uniqueId(),
       title: todoTitle,
+      checked: false,
     };
 
     if (event.key === 'Enter') {

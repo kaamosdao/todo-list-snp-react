@@ -23,8 +23,8 @@ const TodosList = () => {
 
   return (
     <ul className={styles.list}>
-      {todos.map(({ id, title }) => (
-        <Todo id={id} title={title} key={id} />
+      {todos.map(({ id, title, checked }) => (
+        <Todo id={id} title={title} checked={checked} key={id} />
       ))}
     </ul>
   );
