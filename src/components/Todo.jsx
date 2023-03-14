@@ -1,8 +1,15 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import cn from 'classnames';
 import styles from './Todo.module.scss';
+import { removeTodo } from '../slices/todoReducer';
 
 const Todo = ({ id, title }) => {
+  const dispatch = useDispatch();
+  const handleRemoveTodo = () => {
+    dispatch(removeTodo(id));
+  };
+
   return (
     <li className={styles.todo}>
       <div className={styles.container}>
@@ -17,6 +24,7 @@ const Todo = ({ id, title }) => {
         <button
           className={styles.buttonDelete}
           type="button"
+          onClick={handleRemoveTodo}
         ></button>
       </div>
     </li>
