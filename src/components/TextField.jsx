@@ -1,8 +1,30 @@
-import React from 'react';
-import cn from 'classnames'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import cn from 'classnames';
+import _ from 'lodash';
+import { addTodo } from '../slices/todoReducer';
 import styles from './TextField.module.scss';
 
 const TextField = () => {
+  const [todoTitle, setTodoTitle] = useState('');
+  const dispatch = useDispatch();
+
+  const handleChange = (event) => {
+    setTodoTitle(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    const newTodo = {
+      id: _.uniqueId(),
+      title: todoTitle,
+    };
+
+    if (event.key === 'Enter') {
+      dispatch(addTodo(newTodo));
+      setTodoTitle('')
+    }
+  };
+
   return (
     <>
       <label className={cn(styles.checkAll, styles.hide)}>
@@ -23,6 +45,9 @@ const TextField = () => {
         name="todo"
         id="todo"
         placeholder="What needs to be done?"
+        value={todoTitle}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
         required
       />
     </>

@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
 const initialState = {
-  todos: [],
+  items: [],
 };
 
 const todoSlice = createSlice({
@@ -10,13 +10,13 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     setTodos: (state, { payload }) => {
-      state.todos = payload;
+      state.items = payload;
     },
     addTodo: (state, { payload }) => {
-      state.todos.push(payload);
+      state.items.push(payload);
     },
     removeTodo: (state) => {
-      state.items = _.remove(state.todos, (item) => item.id !== payload.id);
+      state.items = _.remove(state.items, (item) => item.id !== payload.id);
     },
   },
 });
