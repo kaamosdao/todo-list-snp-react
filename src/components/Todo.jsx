@@ -25,11 +25,11 @@ const Todo = ({ id, title, checked }) => {
   return (
     <li className={s.todo}>
       <div className={s.container}>
-        <label className={s.checkbox} htmlFor="todo">
+        <label className={s.checkbox} htmlFor={id}>
           <input
             className={cn('visually-hidden', 'inputCheck')}
             type="checkbox"
-            id="todo"
+            id={id}
             checked={checked}
             onChange={handleChecked}
           />
