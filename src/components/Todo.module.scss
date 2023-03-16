@@ -15,7 +15,7 @@
   }
 }
 
-.todo:not(:lastChild) {
+.todo:not(:lastchild) {
   border-bottom: none;
 }
 
@@ -24,7 +24,7 @@
   text-decoration: line-through;
 }
 
-.todoEditing .container{
+.todoEditing .container {
   display: none;
 }
 
@@ -106,7 +106,7 @@
   content: '';
 }
 
-.inputCheck:checked + .checkboxMark{
+.inputCheck:checked + .checkboxMark {
   border: 1px solid $green300;
 }
 
