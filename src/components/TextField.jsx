@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import _ from 'lodash';
-import { addTodo } from '../slices/todoReducer';
-import styles from './TextField.module.scss';
 
-const cn = classNames.bind(styles);
+import { addTodo } from '../slices/todoReducer';
+
+import s from './TextField.module.scss';
+
+
+const cn = classNames.bind(s);
 
 const TextField = () => {
   const [todoTitle, setTodoTitle] = useState('');
@@ -25,26 +28,26 @@ const TextField = () => {
 
     if (event.key === 'Enter') {
       dispatch(addTodo(newTodo));
-      setTodoTitle('')
+      setTodoTitle('');
     }
   };
 
   return (
     <>
-      <label className={cn('checkAll', {'hide': hasTodos})}>
+      <label className={cn('checkAll', { hide: hasTodos })} htmlFor="all">
         <input
           className={cn('visually-hidden', 'inputCheck')}
           type="checkbox"
           id="all"
         />
-        <span className={styles.checkboxMark}></span>
+        <span className={s.checkboxMark} />
       </label>
       <label className="visually-hidden" htmlFor="todo">
         {' '}
         Todo{' '}
       </label>
       <input
-        className={styles.input}
+        className={s.input}
         type="text"
         name="todo"
         id="todo"
