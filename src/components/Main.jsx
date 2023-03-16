@@ -1,14 +1,15 @@
 import React from 'react';
+
 import TextField from './TextField';
 import TodosHeader from './TodosHeader';
 import TodosList from './TodosList';
-import styles from './Main.module.scss';
 
-const Main = () => {
-  return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>Todos</h1>
-      <section className={styles.todos}>
+import s from './Main.module.scss';
+
+const Main = () => (
+    <main className={s.main}>
+      <h1 className={s.title}>Todos</h1>
+      <section className={s.todos}>
         <h2 className="visually-hidden">Todo form</h2>
         <TodosHeader />
         <TextField />
@@ -17,6 +18,5 @@ const Main = () => {
       </section>
     </main>
   );
-};
 
 export default Main;
