@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import useLocalStorage from '../hooks/index.js';
 import { setTodos } from '../slices/todoReducer';
+
 import Todo from './Todo';
-import styles from './TodosList.module.scss';
+
+import s from './TodosList.module.scss';
 
 const TodosList = () => {
   const dispatch = useDispatch();
@@ -12,17 +15,17 @@ const TodosList = () => {
 
   useEffect(() => {
     if (localStorageTodo.hasData()) {
-      const todos = localStorageTodo.getData();
-      dispatch(setTodos(todos));
+      const storageTodos = localStorageTodo.getData();
+      dispatch(setTodos(storageTodos));
     }
   }, []);
 
   useEffect(() => {
     localStorageTodo.setData(todos);
-  }, [todos]);
+  }, [todos, localStorageTodo]);
 
   return (
-    <ul className={styles.list}>
+    <ul className={s.list}>
       {todos.map(({ id, title, checked }) => (
         <Todo id={id} title={title} checked={checked} key={id} />
       ))}
