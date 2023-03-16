@@ -38,14 +38,19 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import App from './App.jsx';
-import LocalStorageContext from './hooks/LocalStorageContext.jsx';
+
 import store from './slices/index.js';
 
-export default (localStorage) => (
+import LocalStorageContext from './hooks/LocalStorageContext.jsx';
+
+import App from './App.jsx';
+
+const init = (localStorage) => (
   <Provider store={store}>
     <LocalStorageContext.Provider value={localStorage}>
       <App />
     </LocalStorageContext.Provider>
   </Provider>
 );
+
+export default init;
