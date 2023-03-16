@@ -1,18 +1,18 @@
 import React from 'react';
-import cn from 'classnames'
-import styles from './TodosHeader.module.scss';
+import cn from 'classnames';
 
-const TodosHeader = () => {
-  return (
-    <header className={cn(styles.header, styles.hide)}>
+import s from './TodosHeader.module.scss';
+
+const TodosHeader = () => (
+    <header className={cn(s.header, s.hide)}>
       <h3 className="visually-hidden">Todo information and filter</h3>
-      <span className={styles.info}>
+      <span className={s.info}>
         <strong>0</strong> items left
       </span>
-      <ul className={styles.filterList}>
+      <ul className={s.filterList}>
         <li>
           <button
-            className={cn(styles.buttonFilter, styles.buttonFilterSelected)}
+            className={cn(s.buttonFilter, s.buttonFilterSelected)}
             type="button"
             name="all"
           >
@@ -20,24 +20,24 @@ const TodosHeader = () => {
           </button>
         </li>
         <li>
-          <button className={styles.buttonFilter} type="button" name="active">
+          <button className={s.buttonFilter} type="button" name="active">
             Active
           </button>
         </li>
         <li>
-          <button className={styles.buttonFilter} type="button" name="completed">
+          <button
+            className={s.buttonFilter}
+            type="button"
+            name="completed"
+          >
             Completed
           </button>
         </li>
       </ul>
-      <button
-        className={cn(styles.buttonClear, styles.hide)}
-        type="button"
-      >
+      <button className={cn(s.buttonClear, s.hide)} type="button">
         Clear completed
       </button>
     </header>
   );
-};
 
 export default TodosHeader;
