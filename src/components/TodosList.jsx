@@ -18,7 +18,7 @@ const TodosList = () => {
       const storageTodos = localStorageTodo.getData();
       dispatch(setTodos(storageTodos));
     }
-  }, []);
+  }, [dispatch, localStorageTodo]);
 
   useEffect(() => {
     localStorageTodo.setData(todos);
