@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import classNames from 'classnames/bind';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 
 import { addTodo } from '../slices/todoReducer';
 
+import InputCheckAll from './InputCheckAll';
+
 import s from './TextField.module.scss';
 
-
-const cn = classNames.bind(s);
-
 const TextField = () => {
-  const [todoTitle, setTodoTitle] = useState('');
-  const [checked, setChecked] = useState(false);
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.items);
-  const hasTodos = !todos.length;
+
+  const [todoTitle, setTodoTitle] = useState('');
 
   const handleChange = (event) => {
     setTodoTitle(event.target.value);
@@ -34,30 +30,9 @@ const TextField = () => {
     }
   };
 
-  const handleChecked = (event) => {
-    setChecked(event.target.checked);
-  };
-
-  useEffect(() => {
-    const hasCheckedTodo = todos.find((todo) => todo.checked);
-    if (hasCheckedTodo) {
-
-    }
-    // console.log(hasCheckedTodo);
-  }, [checked, todos])
-
   return (
     <>
-      <label className={cn('checkAll', { hide: hasTodos })} htmlFor="all">
-        <input
-          className={cn('visually-hidden', 'inputCheck')}
-          type="checkbox"
-          id="all"
-          onChange={handleChecked}
-          checked={checked}
-        />
-        <span className={s.checkboxMark} />
-      </label>
+      <InputCheckAll />
       <label className="visually-hidden" htmlFor="todo">
         {' '}
         Todo{' '}
