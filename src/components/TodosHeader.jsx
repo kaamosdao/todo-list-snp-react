@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 import { useTranslation, Trans } from 'react-i18next';
 
-import { setTodoFilter } from '../slices/todoReducer';
+import { setTodoFilter, setTodos } from '../slices/todoReducer';
 
 import s from './TodosHeader.module.scss';
 
@@ -16,10 +16,9 @@ const TodosHeader = () => {
   const todos = useSelector((state) => state.todos.items);
   const selectedFilter = useSelector((state) => state.todos.filter);
 
-  const activeTodosCount = todos.filter(
-    (todo) => todo.status === 'active'
-  ).length;
-
+  const activeTodos = todos.filter((todo) => todo.status === 'active');
+  const completedTodos = todos.find((todo) => todo.status === 'completed');
+  const activeTodosCount = activeTodos.length;
   const hasTodos = !!todos.length;
 
   const handleClickAll = () => {
@@ -32,6 +31,10 @@ const TodosHeader = () => {
 
   const handleClickCompleted = () => {
     dispatch(setTodoFilter('completed'));
+  };
+
+  const handleClearCompleted = () => {
+    dispatch(setTodos(activeTodos));
   };
 
   return (
@@ -76,12 +79,16 @@ const TodosHeader = () => {
             name="completed"
             onClick={handleClickCompleted}
           >
-            {t('Completed')}
+            {t('filterCompleted')}
           </button>
         </li>
       </ul>
-      <button className={cn(s.buttonClear, s.hide)} type="button">
-        Clear completed
+      <button
+        className={cn('buttonClear', { hide: !completedTodos })}
+        type="button"
+        onClick={handleClearCompleted}
+      >
+        {t('buttonClear')}
       </button>
     </header>
   );

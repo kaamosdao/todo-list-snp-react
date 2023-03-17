@@ -7,5 +7,6 @@ export default {
     filterActive: 'Active',
     filterCompleted: 'Completed',
     inputPlaceholder: 'What needs to be done?',
+    buttonClear: 'Clear completed',
   },
 };
