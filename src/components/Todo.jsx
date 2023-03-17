@@ -10,11 +10,13 @@ import s from './Todo.module.scss';
 
 const cn = classNames.bind(s);
 
-const Todo = ({ id, title, checked }) => {
+const Todo = ({ id, title, status }) => {
   const dispatch = useDispatch();
+  const checked = status === 'completed';
 
   const handleChecked = (event) => {
-    const newTodo = { id, title, checked: event.target.checked };
+    const newStatus = event.target.checked ? 'completed' : 'active';
+    const newTodo = { id, title, status: newStatus };
     dispatch(updateTodo(newTodo));
   };
 
@@ -49,7 +51,7 @@ const Todo = ({ id, title, checked }) => {
 Todo.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  checked: PropTypes.bool.isRequired,
+  status: PropTypes.string.isRequired,
 };
 
 export default Todo;

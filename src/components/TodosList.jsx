@@ -26,8 +26,8 @@ const TodosList = () => {
 
   return (
     <ul className={s.list}>
-      {todos.map(({ id, title, checked }) => (
-        <Todo id={id} title={title} checked={checked} key={id} />
+      {todos.map(({ id, title, status }) => (
+        <Todo id={id} title={title} status={status} key={id} />
       ))}
     </ul>
   );
