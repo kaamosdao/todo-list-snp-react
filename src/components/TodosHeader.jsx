@@ -14,7 +14,7 @@ const TodosHeader = () => {
   const { t } = useTranslation();
 
   const todos = useSelector((state) => state.todos.items);
-  const selectedFilter = useSelector((state) => state.todos.filter);
+  const todoFilter = useSelector((state) => state.todos.filter);
 
   const activeTodos = todos.filter((todo) => todo.status === 'active');
   const completedTodos = todos.find((todo) => todo.status === 'completed');
@@ -49,7 +49,7 @@ const TodosHeader = () => {
         <li>
           <button
             className={cn('buttonFilter', {
-              buttonFilterSelected: selectedFilter === 'all',
+              buttonFilterSelected: todoFilter === 'all',
             })}
             type="button"
             name="all"
@@ -61,7 +61,7 @@ const TodosHeader = () => {
         <li>
           <button
             className={cn('buttonFilter', {
-              buttonFilterSelected: selectedFilter === 'active',
+              buttonFilterSelected: todoFilter === 'active',
             })}
             type="button"
             name="active"
@@ -73,7 +73,7 @@ const TodosHeader = () => {
         <li>
           <button
             className={cn('buttonFilter', {
-              buttonFilterSelected: selectedFilter === 'completed',
+              buttonFilterSelected: todoFilter === 'completed',
             })}
             type="button"
             name="completed"
