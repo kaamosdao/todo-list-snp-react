@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 import { addTodo } from '../slices/todoReducer';
@@ -10,6 +11,7 @@ import s from './TextField.module.scss';
 
 const TextField = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const [todoTitle, setTodoTitle] = useState('');
 
@@ -42,7 +44,7 @@ const TextField = () => {
         type="text"
         name="todo"
         id="todo"
-        placeholder="What needs to be done?"
+        placeholder={t('inputPlaceholder')}
         value={todoTitle}
         onChange={handleChange}
         onKeyDown={handleKeyDown}

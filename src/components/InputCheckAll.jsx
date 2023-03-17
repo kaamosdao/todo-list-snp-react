@@ -10,6 +10,7 @@ const cn = classNames.bind(s);
 
 const InputCheckAll = () => {
   const dispatch = useDispatch();
+
   const todos = useSelector((state) => state.todos.items);
 
   const [checkAll, setCheckAll] = useState(false);

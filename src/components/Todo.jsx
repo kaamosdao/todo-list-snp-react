@@ -12,6 +12,7 @@ const cn = classNames.bind(s);
 
 const Todo = ({ id, title, status }) => {
   const dispatch = useDispatch();
+
   const checked = status === 'completed';
 
   const handleChecked = (event) => {

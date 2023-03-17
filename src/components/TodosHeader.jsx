@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
+import { useTranslation, Trans } from 'react-i18next';
 
 import { setTodoFilter } from '../slices/todoReducer';
 
@@ -10,8 +11,14 @@ const cn = classNames.bind(s);
 
 const TodosHeader = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   const todos = useSelector((state) => state.todos.items);
   const selectedFilter = useSelector((state) => state.todos.filter);
+
+  const activeTodosCount = todos.filter(
+    (todo) => todo.status === 'active'
+  ).length;
 
   const hasTodos = !!todos.length;
 
@@ -31,7 +38,9 @@ const TodosHeader = () => {
     <header className={cn('header', { hide: !hasTodos })}>
       <h3 className="visually-hidden">Todo information and filter</h3>
       <span className={s.info}>
-        <strong>0</strong> items left
+        <Trans i18nKey="todosCount" count={activeTodosCount}>
+          <strong>{{ activeTodosCount }}</strong> item left
+        </Trans>
       </span>
       <ul className={s.filterList}>
         <li>
@@ -43,7 +52,7 @@ const TodosHeader = () => {
             name="all"
             onClick={handleClickAll}
           >
-            All
+            {t('filterAll')}
           </button>
         </li>
         <li>
@@ -55,7 +64,7 @@ const TodosHeader = () => {
             name="active"
             onClick={handleClickActive}
           >
-            Active
+            {t('filterActive')}
           </button>
         </li>
         <li>
@@ -67,7 +76,7 @@ const TodosHeader = () => {
             name="completed"
             onClick={handleClickCompleted}
           >
-            Completed
+            {t('Completed')}
           </button>
         </li>
       </ul>

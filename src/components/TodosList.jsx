@@ -10,9 +10,10 @@ import s from './TodosList.module.scss';
 
 const TodosList = () => {
   const dispatch = useDispatch();
+  const localStorageTodo = useLocalStorage();
+
   const todos = useSelector((state) => state.todos.items);
   const todoFilter = useSelector((state) => state.todos.filter);
-  const localStorageTodo = useLocalStorage();
 
   useEffect(() => {
     if (localStorageTodo.hasData()) {
