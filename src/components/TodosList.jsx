@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import useLocalStorage from '../hooks/index.js';
 import { setTodos } from '../slices/todoReducer';
+import useLocalStorage from '../hooks/index.js';
 
 import Todo from './Todo';
 
