@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 const initialState = {
   items: [],
+  filter: 'all',
 };
 
 const todoSlice = createSlice({
@@ -27,9 +28,13 @@ const todoSlice = createSlice({
         return item;
       });
     },
+    setTodoFilter: (state, { payload }) => {
+      state.filter = payload;
+    },
   },
 });
 
-export const { setTodos, addTodo, removeTodo, updateTodo } = todoSlice.actions;
+export const { setTodos, addTodo, removeTodo, updateTodo, setTodoFilter } =
+  todoSlice.actions;
 
 export default todoSlice.reducer;

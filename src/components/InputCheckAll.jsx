@@ -14,7 +14,7 @@ const InputCheckAll = () => {
 
   const [checkAll, setCheckAll] = useState(false);
 
-  const hasTodos = !todos.length;
+  const hasTodos = !!todos.length;
   const hasActiveTodo = todos.find((todo) => todo.status === 'active');
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const InputCheckAll = () => {
   };
 
   return (
-    <label className={cn('checkAll', { hide: hasTodos })} htmlFor="all">
+    <label className={cn('checkAll', { hide: !hasTodos })} htmlFor="all">
       <input
         className={cn('visually-hidden', 'inputCheck')}
         type="checkbox"
