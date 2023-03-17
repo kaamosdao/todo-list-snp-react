@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setTodos } from '../slices/todoReducer';
+import { setTodoFilter, setTodos } from '../slices/todoReducer';
 import useLocalStorage from '../hooks/index.js';
 
 import Todo from './Todo';
@@ -17,14 +17,16 @@ const TodosList = () => {
 
   useEffect(() => {
     if (localStorageTodo.hasData()) {
-      const storageTodos = localStorageTodo.getData();
+      const { todos: storageTodos, todoFilter: storageFilter } =
+        localStorageTodo.getData();
       dispatch(setTodos(storageTodos));
+      dispatch(setTodoFilter(storageFilter));
     }
   }, [dispatch, localStorageTodo]);
 
   useEffect(() => {
-    localStorageTodo.setData(todos);
-  }, [todos, localStorageTodo]);
+    localStorageTodo.setData({ todos, todoFilter });
+  }, [todos, todoFilter, localStorageTodo]);
 
   return (
     <ul className={s.list}>
