@@ -11,6 +11,7 @@ import s from './TodosList.module.scss';
 const TodosList = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos.items);
+  const todoFilter = useSelector((state) => state.todos.filter);
   const localStorageTodo = useLocalStorage();
 
   useEffect(() => {
@@ -26,9 +27,11 @@ const TodosList = () => {
 
   return (
     <ul className={s.list}>
-      {todos.map(({ id, title, status }) => (
-        <Todo id={id} title={title} status={status} key={id} />
-      ))}
+      {todos
+        .filter(({ status }) => todoFilter === 'all' || status === todoFilter)
+        .map(({ id, title, status }) => (
+          <Todo id={id} title={title} status={status} key={id} />
+        ))}
     </ul>
   );
 };
