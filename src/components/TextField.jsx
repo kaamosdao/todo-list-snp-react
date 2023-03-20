@@ -20,7 +20,7 @@ const TextField = () => {
     const clickHandler = (event) => {
       const trimmedTitle = inputRef.current.value.trim();
 
-      if (event.target.classList.contains('inputTodo')) {
+      if (event.target.id === 'todoInput') {
         return;
       }
 
