@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
@@ -14,17 +14,23 @@ const TextField = () => {
   const { t } = useTranslation();
   const inputRef = useRef(null);
 
+  const todos = useSelector((state) => state.todos.items);
+
   const [todoTitle, setTodoTitle] = useState('');
 
   useEffect(() => {
-    const clickHandler = (event) => {
+    setTodoTitle('');
+  }, [todos]);
+
+  useEffect(() => {
+    const onClickDocument = (event) => {
       const trimmedTitle = inputRef.current.value.trim();
 
-      if (event.target.id === 'todoInput') {
+      if (!trimmedTitle) {
         return;
       }
 
-      if (!trimmedTitle) {
+      if (event.target.id === 'todoInput') {
         return;
       }
 
@@ -33,15 +39,13 @@ const TextField = () => {
         title: trimmedTitle,
         status: 'active',
       };
-
       dispatch(addTodo(newTodo));
-      setTodoTitle('');
     };
 
-    document.addEventListener('click', clickHandler);
+    document.addEventListener('click', onClickDocument);
 
     return () => {
-      document.removeEventListener('click', clickHandler);
+      document.removeEventListener('click', onClickDocument);
     };
   }, [dispatch]);
 
@@ -64,7 +68,6 @@ const TextField = () => {
 
     if (event.key === 'Enter') {
       dispatch(addTodo(newTodo));
-      setTodoTitle('');
     }
   };
 

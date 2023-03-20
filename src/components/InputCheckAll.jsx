@@ -27,6 +27,7 @@ const InputCheckAll = () => {
   }, [hasActiveTodo]);
 
   const handleCheckAll = (event) => {
+    event.stopPropagation();
     const newTodos = todos.map((todo) => {
       const newStatus = event.target.checked ? 'completed' : 'active';
       return { ...todo, status: newStatus };

@@ -7,7 +7,6 @@ import { removeTodo, updateTodo } from '../slices/todoReducer';
 
 import s from './Todo.module.scss';
 
-
 const cn = classNames.bind(s);
 
 const Todo = ({ id, title, status }) => {
@@ -16,12 +15,19 @@ const Todo = ({ id, title, status }) => {
   const checked = status === 'completed';
 
   const handleChecked = (event) => {
+    event.stopPropagation();
+    if (document.querySelector('#todoInput').value.trim()) {
+      return;
+    }
     const newStatus = event.target.checked ? 'completed' : 'active';
     const newTodo = { id, title, status: newStatus };
     dispatch(updateTodo(newTodo));
   };
 
   const handleRemoveTodo = () => {
+    if (document.querySelector('#todoInput').value.trim()) {
+      return;
+    }
     dispatch(removeTodo(id));
   };
 
@@ -38,7 +44,7 @@ const Todo = ({ id, title, status }) => {
           />
           <span className={s.checkboxMark} />
         </label>
-        <p className={cn('title', { 'todoCompleted': checked })}>{title}</p>
+        <p className={cn('title', { todoCompleted: checked })}>{title}</p>
         <button
           className={s.buttonDelete}
           type="button"
