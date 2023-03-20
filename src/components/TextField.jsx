@@ -20,9 +20,15 @@ const TextField = () => {
   };
 
   const handleKeyDown = (event) => {
+    const trimmedTitle = todoTitle.trim();
+
+    if (!trimmedTitle) {
+      return;
+    };
+
     const newTodo = {
       id: _.uniqueId(),
-      title: todoTitle,
+      title: trimmedTitle,
       status: 'active',
     };
 
