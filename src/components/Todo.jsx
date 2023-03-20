@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
@@ -11,8 +11,18 @@ const cn = classNames.bind(s);
 
 const Todo = ({ id, title, status }) => {
   const dispatch = useDispatch();
+  const inputEditingRef = useRef(null);
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editingValue, setEditingValue] = useState(title);
 
   const checked = status === 'completed';
+
+  useEffect(() => {
+    if (isEditing) {
+      inputEditingRef.current.focus();
+    }
+  }, [isEditing]);
 
   const handleChecked = (event) => {
     event.stopPropagation();
@@ -31,8 +41,29 @@ const Todo = ({ id, title, status }) => {
     dispatch(removeTodo(id));
   };
 
+  const handleDbClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleBlur = () => {
+    const newTitle = editingValue.trim();
+
+    if (!newTitle) {
+      dispatch(removeTodo(id));
+    }
+
+    const newTodo = { id, title: newTitle, status };
+    dispatch(updateTodo(newTodo));
+    setEditingValue(newTitle);
+    setIsEditing(false);
+  };
+
+  const handleEditingValue = (event) => {
+    setEditingValue(event.target.value);
+  };
+
   return (
-    <li className={s.todo}>
+    <li className={cn('todo', { todoEditing: isEditing })}>
       <div className={s.container}>
         <label className={s.checkbox} htmlFor={id}>
           <input
@@ -44,13 +75,27 @@ const Todo = ({ id, title, status }) => {
           />
           <span className={s.checkboxMark} />
         </label>
-        <p className={cn('title', { todoCompleted: checked })}>{title}</p>
+        <p
+          className={cn('title', { todoCompleted: checked })}
+          onDoubleClick={handleDbClick}
+        >
+          {title}
+        </p>
         <button
           className={s.buttonDelete}
           type="button"
           onClick={handleRemoveTodo}
         />
       </div>
+      {isEditing && (
+        <input
+          ref={inputEditingRef}
+          className={s.inputEditing}
+          onBlur={handleBlur}
+          value={editingValue}
+          onChange={handleEditingValue}
+        />
+      )}
     </li>
   );
 };
