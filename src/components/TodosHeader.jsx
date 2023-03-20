@@ -22,18 +22,30 @@ const TodosHeader = () => {
   const hasTodos = !!todos.length;
 
   const handleClickAll = () => {
+    if (document.querySelector('#todoInput').value) {
+      return;
+    }
     dispatch(setTodoFilter('all'));
   };
 
   const handleClickActive = () => {
+    if (document.querySelector('#todoInput').value) {
+      return;
+    }
     dispatch(setTodoFilter('active'));
   };
 
   const handleClickCompleted = () => {
+    if (document.querySelector('#todoInput').value) {
+      return;
+    }
     dispatch(setTodoFilter('completed'));
   };
 
   const handleClearCompleted = () => {
+    if (document.querySelector('#todoInput').value) {
+      return;
+    }
     dispatch(setTodos(activeTodos));
   };
 
