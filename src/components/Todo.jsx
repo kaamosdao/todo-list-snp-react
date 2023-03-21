@@ -106,6 +106,7 @@ const Todo = ({ id, title, status }) => {
       </div>
       {isEditing && (
         <input
+          className={s.inputEditing}
           ref={inputEditingRef}
           value={editingValue}
           onChange={handleEditingValue}
