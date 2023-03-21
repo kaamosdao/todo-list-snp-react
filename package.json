@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "serve": "cross-env NODE_ENV=development webpack serve --mode development --open"
+    "serve": "cross-env NODE_ENV=development webpack serve --mode development --open",
+    "lint": "npx eslint --ext .jsx,.js src/"
   },
   "repository": {
     "type": "git",

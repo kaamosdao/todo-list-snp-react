@@ -77,7 +77,7 @@ const Todo = ({ id, title, status }) => {
     dispatch(updateTodo(newTodo));
     setEditingValue(newTitle);
     setIsEditing(false);
-  }; 
+  };
 
   return (
     <li className={cn('todo', { todoEditing: isEditing })}>
