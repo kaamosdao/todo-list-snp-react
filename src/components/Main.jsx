@@ -18,7 +18,6 @@ const Main = () => {
         <TodosHeader />
         <TextField />
         <TodosList />
-        {/* <ul className="todos__list"></ul> */}
       </section>
     </main>
   );
