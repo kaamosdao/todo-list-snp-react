@@ -62,6 +62,23 @@ const Todo = ({ id, title, status }) => {
     setEditingValue(event.target.value);
   };
 
+  const handleKeyUp = (event) => {
+    if (event.key !== 'Enter') {
+      return;
+    }
+
+    const newTitle = editingValue.trim();
+
+    if (!newTitle) {
+      dispatch(removeTodo(id));
+    }
+
+    const newTodo = { id, title: newTitle, status };
+    dispatch(updateTodo(newTodo));
+    setEditingValue(newTitle);
+    setIsEditing(false);
+  }; 
+
   return (
     <li className={cn('todo', { todoEditing: isEditing })}>
       <div className={s.container}>
@@ -90,10 +107,10 @@ const Todo = ({ id, title, status }) => {
       {isEditing && (
         <input
           ref={inputEditingRef}
-          className={s.inputEditing}
-          onBlur={handleBlur}
           value={editingValue}
           onChange={handleEditingValue}
+          onBlur={handleBlur}
+          onKeyUp={handleKeyUp}
         />
       )}
     </li>
