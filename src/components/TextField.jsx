@@ -53,7 +53,7 @@ const TextField = () => {
     setTodoTitle(event.target.value);
   };
 
-  const handleKeyDown = (event) => {
+  const handleKeyUp = (event) => {
     const trimmedTitle = todoTitle.trim();
 
     if (!trimmedTitle) {
@@ -87,7 +87,7 @@ const TextField = () => {
         placeholder={t('inputPlaceholder')}
         value={todoTitle}
         onChange={handleChange}
-        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
         required
       />
     </>
