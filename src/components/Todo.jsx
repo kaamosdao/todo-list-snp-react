@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import { removeTodo, updateTodo } from '../slices/todoReducer';
+
+import TodoInputEditing from './TodoInputEditing';
 
 import s from './Todo.module.scss';
 
@@ -11,18 +13,10 @@ const cn = classNames.bind(s);
 
 const Todo = ({ id, title, status }) => {
   const dispatch = useDispatch();
-  const inputEditingRef = useRef(null);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editingValue, setEditingValue] = useState(title);
 
   const checked = status === 'completed';
-
-  useEffect(() => {
-    if (isEditing) {
-      inputEditingRef.current.focus();
-    }
-  }, [isEditing]);
 
   const handleChecked = (event) => {
     event.stopPropagation();
@@ -45,43 +39,9 @@ const Todo = ({ id, title, status }) => {
     setIsEditing(true);
   };
 
-  const handleBlur = () => {
-    const newTitle = editingValue.trim();
-
-    if (!newTitle) {
-      dispatch(removeTodo(id));
-    }
-
-    const newTodo = { id, title: newTitle, status };
-    dispatch(updateTodo(newTodo));
-    setEditingValue(newTitle);
-    setIsEditing(false);
-  };
-
-  const handleEditingValue = (event) => {
-    setEditingValue(event.target.value);
-  };
-
-  const handleKeyUp = (event) => {
-    if (event.key !== 'Enter') {
-      return;
-    }
-
-    const newTitle = editingValue.trim();
-
-    if (!newTitle) {
-      dispatch(removeTodo(id));
-    }
-
-    const newTodo = { id, title: newTitle, status };
-    dispatch(updateTodo(newTodo));
-    setEditingValue(newTitle);
-    setIsEditing(false);
-  };
-
   return (
-    <li className={cn('todo', { todoEditing: isEditing })}>
-      <div className={s.container}>
+    <li className={s.todo}>
+      <div className={cn('container', { hide: isEditing })}>
         <label className={s.checkbox} htmlFor={id}>
           <input
             className={cn('visually-hidden', 'inputCheck')}
@@ -105,13 +65,12 @@ const Todo = ({ id, title, status }) => {
         />
       </div>
       {isEditing && (
-        <input
-          className={s.inputEditing}
-          ref={inputEditingRef}
-          value={editingValue}
-          onChange={handleEditingValue}
-          onBlur={handleBlur}
-          onKeyUp={handleKeyUp}
+        <TodoInputEditing
+          id={id}
+          title={title}
+          status={status}
+          isEditing={isEditing}
+          setIsEditing={setIsEditing}
         />
       )}
     </li>
