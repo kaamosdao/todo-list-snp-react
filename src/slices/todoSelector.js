@@ -30,4 +30,9 @@ export const selectActiveTodosCount = createSelector(
   (activeTodos) => activeTodos.length
 );
 
+export const selectCompletedTodosCount = createSelector(
+  selectCompletedTodos,
+  (completedTodos) => completedTodos.length
+);
+
 export default selectTodoItems;
