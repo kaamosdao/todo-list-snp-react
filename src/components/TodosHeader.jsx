@@ -4,6 +4,13 @@ import classNames from 'classnames/bind';
 import { useTranslation, Trans } from 'react-i18next';
 
 import { setTodoFilter, setTodos } from '../slices/todoReducer';
+import {
+  selectActiveTodos,
+  selectActiveTodosCount,
+  selectCompletedTodosCount,
+  selectTodoFilter,
+  selectTodosCount,
+} from '../slices/todoSelector';
 
 import s from './TodosHeader.module.scss';
 
@@ -13,13 +20,11 @@ const TodosHeader = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const todos = useSelector((state) => state.todos.items);
-  const todoFilter = useSelector((state) => state.todos.filter);
-
-  const activeTodos = todos.filter((todo) => todo.status === 'active');
-  const completedTodos = todos.find((todo) => todo.status === 'completed');
-  const activeTodosCount = activeTodos.length;
-  const hasTodos = !!todos.length;
+  const todoFilter = useSelector(selectTodoFilter);
+  const activeTodos = useSelector(selectActiveTodos);
+  const activeTodosCount = useSelector(selectActiveTodosCount);
+  const hasCompletedTodos = !!useSelector(selectCompletedTodosCount);
+  const hasTodos = !!useSelector(selectTodosCount);
 
   const handleClickAll = () => {
     if (document.querySelector('#todoInput').value) {
@@ -96,7 +101,7 @@ const TodosHeader = () => {
         </li>
       </ul>
       <button
-        className={cn('buttonClear', { hide: !completedTodos })}
+        className={cn('buttonClear', { hide: !hasCompletedTodos })}
         type="button"
         onClick={handleClearCompleted}
       >
