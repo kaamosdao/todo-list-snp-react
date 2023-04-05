@@ -10,14 +10,12 @@ export const selectTodoFilter = createSelector(
   (filter) => filter
 );
 
-export const selectActiveTodos = createSelector(
-  selectTodoItems,
-  (todos) => todos.filter((todo) => todo.status === 'active')
+export const selectActiveTodos = createSelector(selectTodoItems, (todos) =>
+  todos.filter((todo) => todo.status === 'active')
 );
 
-export const selectCompletedTodos = createSelector(
-  selectTodoItems,
-  (todos) => todos.filter((todo) => todo.status === 'completed')
+export const selectCompletedTodos = createSelector(selectTodoItems, (todos) =>
+  todos.filter((todo) => todo.status === 'completed')
 );
 
 export const selectTodosCount = createSelector(

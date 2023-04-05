@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setTodoFilter, setTodos } from '../slices/todoReducer';
+import selectTodoItems, { selectTodoFilter } from '../slices/todoSelector';
 import useLocalStorage from '../hooks/index.js';
 
 import Todo from './Todo';
@@ -12,8 +13,8 @@ const TodosList = () => {
   const dispatch = useDispatch();
   const localStorageTodo = useLocalStorage();
 
-  const todos = useSelector((state) => state.todos.items);
-  const todoFilter = useSelector((state) => state.todos.filter);
+  const todos = useSelector(selectTodoItems);
+  const todoFilter = useSelector(selectTodoFilter);
 
   useEffect(() => {
     if (localStorageTodo.hasData()) {

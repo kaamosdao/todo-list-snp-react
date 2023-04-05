@@ -16,11 +16,10 @@ const InputCheckAll = () => {
   const dispatch = useDispatch();
 
   const todos = useSelector(selectTodoItems);
-
-  const [checkAll, setCheckAll] = useState(false);
-
   const hasTodos = !!useSelector(selectTodosCount);
   const hasActiveTodo = !!useSelector(selectActiveTodosCount);
+
+  const [checkAll, setCheckAll] = useState(false);
 
   useEffect(() => {
     if (hasActiveTodo) {
