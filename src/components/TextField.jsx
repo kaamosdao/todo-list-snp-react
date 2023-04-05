@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 import { addTodo } from '../slices/todoReducer';
+import selectTodoItems from '../slices/todoSelector';
 
 import InputCheckAll from './InputCheckAll';
 
@@ -14,7 +15,7 @@ const TextField = () => {
   const { t } = useTranslation();
   const inputRef = useRef(null);
 
-  const todos = useSelector((state) => state.todos.items);
+  const todos = useSelector(selectTodoItems);
 
   const [todoTitle, setTodoTitle] = useState('');
 

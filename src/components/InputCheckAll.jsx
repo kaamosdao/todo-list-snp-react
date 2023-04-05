@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames/bind';
 
 import { setTodos } from '../slices/todoReducer';
+import selectTodoItems, {
+  selectActiveTodosCount,
+  selectTodosCount,
+} from '../slices/todoSelector';
 
 import s from './InputCheckAll.module.scss';
 
@@ -11,12 +15,11 @@ const cn = classNames.bind(s);
 const InputCheckAll = () => {
   const dispatch = useDispatch();
 
-  const todos = useSelector((state) => state.todos.items);
+  const todos = useSelector(selectTodoItems);
+  const hasTodos = !!useSelector(selectTodosCount);
+  const hasActiveTodo = !!useSelector(selectActiveTodosCount);
 
   const [checkAll, setCheckAll] = useState(false);
-
-  const hasTodos = !!todos.length;
-  const hasActiveTodo = todos.find((todo) => todo.status === 'active');
 
   useEffect(() => {
     if (hasActiveTodo) {
