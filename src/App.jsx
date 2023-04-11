@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import InputRefContext from './hooks/InputRefContext';
+import InputRefContext from './context/InputRefContext';
 
 import Main from './components/Main';
 
