@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 
 import { addTodo } from '../slices/todoReducer';
 import selectTodoItems from '../slices/todoSelector';
+
+import { useInputRef } from '../hooks';
 
 import InputCheckAll from './InputCheckAll';
 
@@ -13,7 +15,7 @@ import s from './TextField.module.scss';
 const TextField = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const inputRef = useRef(null);
+  const inputRef = useInputRef();
 
   const todos = useSelector(selectTodoItems);
 
@@ -48,7 +50,7 @@ const TextField = () => {
     return () => {
       document.removeEventListener('click', onClickDocument);
     };
-  }, [dispatch]);
+  }, [dispatch, inputRef]);
 
   const handleChange = (event) => {
     setTodoTitle(event.target.value);

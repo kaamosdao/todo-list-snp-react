@@ -1,7 +1,2 @@
-import { useContext } from 'react';
-
-import LocalStorageContext from './LocalStorageContext.jsx';
-
-const useLocalStorage = () => useContext(LocalStorageContext);
-
-export default useLocalStorage;
+export { default as useInputRef } from './useInputRef.js';
+export { default as useLocalStorage } from './useLocalStorage.js';

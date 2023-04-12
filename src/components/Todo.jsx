@@ -5,6 +5,8 @@ import classNames from 'classnames/bind';
 
 import { removeTodo, updateTodo } from '../slices/todoReducer';
 
+import { useInputRef } from '../hooks';
+
 import TodoInputEditing from './TodoInputEditing';
 
 import s from './Todo.module.scss';
@@ -13,6 +15,7 @@ const cn = classNames.bind(s);
 
 const Todo = ({ id, title, status }) => {
   const dispatch = useDispatch();
+  const inputRef = useInputRef();
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -20,7 +23,7 @@ const Todo = ({ id, title, status }) => {
 
   const handleChecked = (event) => {
     event.stopPropagation();
-    if (document.querySelector('#todoInput').value.trim()) {
+    if (inputRef.current.value.trim()) {
       return;
     }
     const newStatus = event.target.checked ? 'completed' : 'active';
@@ -29,7 +32,7 @@ const Todo = ({ id, title, status }) => {
   };
 
   const handleRemoveTodo = () => {
-    if (document.querySelector('#todoInput').value.trim()) {
+    if (inputRef.current.value.trim()) {
       return;
     }
     dispatch(removeTodo(id));

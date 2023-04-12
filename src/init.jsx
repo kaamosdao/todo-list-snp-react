@@ -5,7 +5,7 @@ import { initReactI18next, I18nextProvider } from 'react-i18next';
 
 import store from './slices/index.js';
 
-import LocalStorageContext from './hooks/LocalStorageContext.jsx';
+import LocalStorageContext from './context/LocalStorageContext.jsx';
 import resources from './locales/index.js';
 
 import App from './App.jsx';

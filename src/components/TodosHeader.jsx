@@ -12,6 +12,8 @@ import {
   selectTodosCount,
 } from '../slices/todoSelector';
 
+import { useInputRef } from '../hooks';
+
 import s from './TodosHeader.module.scss';
 
 const cn = classNames.bind(s);
@@ -19,6 +21,7 @@ const cn = classNames.bind(s);
 const TodosHeader = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const inputRef = useInputRef();
 
   const todoFilter = useSelector(selectTodoFilter);
   const activeTodos = useSelector(selectActiveTodos);
@@ -27,28 +30,28 @@ const TodosHeader = () => {
   const hasTodos = !!useSelector(selectTodosCount);
 
   const handleClickAll = () => {
-    if (document.querySelector('#todoInput').value) {
+    if (inputRef.current.value.trim()) {
       return;
     }
     dispatch(setTodoFilter('all'));
   };
 
   const handleClickActive = () => {
-    if (document.querySelector('#todoInput').value) {
+    if (inputRef.current.value.trim()) {
       return;
     }
     dispatch(setTodoFilter('active'));
   };
 
   const handleClickCompleted = () => {
-    if (document.querySelector('#todoInput').value) {
+    if (inputRef.current.value.trim()) {
       return;
     }
     dispatch(setTodoFilter('completed'));
   };
 
   const handleClearCompleted = () => {
-    if (document.querySelector('#todoInput').value) {
+    if (inputRef.current.value.trim()) {
       return;
     }
     dispatch(setTodos(activeTodos));
