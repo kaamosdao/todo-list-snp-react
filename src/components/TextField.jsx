@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -16,7 +16,6 @@ const TextField = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const inputRef = useInputRef();
-
   const todos = useSelector(selectTodoItems);
 
   const [todoTitle, setTodoTitle] = useState('');
@@ -25,15 +24,15 @@ const TextField = () => {
     setTodoTitle('');
   }, [todos]);
 
-  useEffect(() => {
-    const onClickDocument = (event) => {
+  const addNewTodo = useCallback(
+    (event) => {
       const trimmedTitle = inputRef.current.value.trim();
 
       if (!trimmedTitle) {
         return;
       }
 
-      if (event.target.id === 'todoInput') {
+      if (event.type === 'click' && event.target.id === 'todoInput') {
         return;
       }
 
@@ -42,6 +41,13 @@ const TextField = () => {
         status: todoStatus.active,
       };
       dispatch(addTodo(newTodo));
+    },
+    [dispatch, inputRef]
+  );
+
+  useEffect(() => {
+    const onClickDocument = (event) => {
+      addNewTodo(event);
     };
 
     document.addEventListener('click', onClickDocument);
@@ -49,27 +55,17 @@ const TextField = () => {
     return () => {
       document.removeEventListener('click', onClickDocument);
     };
-  }, [dispatch, inputRef]);
+  }, [addNewTodo, dispatch, inputRef]);
 
   const handleChange = (event) => {
     setTodoTitle(event.target.value);
   };
 
   const handleKeyUp = (event) => {
-    const trimmedTitle = todoTitle.trim();
-
-    if (!trimmedTitle) {
+    if (event.key !== 'Enter') {
       return;
     }
-
-    const newTodo = {
-      title: trimmedTitle,
-      status: todoStatus.active,
-    };
-
-    if (event.key === 'Enter') {
-      dispatch(addTodo(newTodo));
-    }
+    addNewTodo(event);
   };
 
   return (
