@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
 import filters from '../types/types';
@@ -33,8 +33,14 @@ const todoSlice = createSlice({
     setTodos: (state, { payload }) => {
       state.items = payload;
     },
-    addTodo: (state, { payload }) => {
-      state.items.push(payload);
+    addTodo: {
+      reducer: (state, { payload }) => {
+        state.items.push(payload);
+      },
+      prepare: ({ title, status }) => {
+        const id = nanoid();
+        return { payload: { id, title, status } };
+      },
     },
     removeTodo: (state, { payload }) => {
       state.items = _.remove(state.items, (item) => item.id !== payload);

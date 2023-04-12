@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import _ from 'lodash';
 
 import { addTodo } from '../slices/todoReducer';
 import selectTodoItems from '../slices/todoSelector';
@@ -39,7 +38,6 @@ const TextField = () => {
       }
 
       const newTodo = {
-        id: _.uniqueId(),
         title: trimmedTitle,
         status: todoStatus.active,
       };
@@ -65,7 +63,6 @@ const TextField = () => {
     }
 
     const newTodo = {
-      id: _.uniqueId(),
       title: trimmedTitle,
       status: todoStatus.active,
     };
