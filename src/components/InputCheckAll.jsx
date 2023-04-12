@@ -8,7 +8,7 @@ import selectTodoItems, {
   selectTodosCount,
 } from '../slices/todoSelector';
 
-import s from './InputCheckAll.module.scss';
+import s from './styles/InputCheckAll.module.scss';
 
 const cn = classNames.bind(s);
 

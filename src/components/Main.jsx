@@ -5,7 +5,7 @@ import TextField from './TextField';
 import TodosHeader from './TodosHeader';
 import TodosList from './TodosList';
 
-import s from './Main.module.scss';
+import s from './styles/Main.module.scss';
 
 const Main = () => {
   const { t } = useTranslation();

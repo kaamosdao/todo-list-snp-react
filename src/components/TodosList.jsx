@@ -7,7 +7,7 @@ import { useLocalStorage } from '../hooks/index.js';
 
 import Todo from './Todo';
 
-import s from './TodosList.module.scss';
+import s from './styles/TodosList.module.scss';
 
 const TodosList = () => {
   const dispatch = useDispatch();

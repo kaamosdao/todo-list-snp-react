@@ -14,7 +14,7 @@ import {
 
 import { useInputRef } from '../hooks';
 
-import s from './TodosHeader.module.scss';
+import s from './styles/TodosHeader.module.scss';
 
 const cn = classNames.bind(s);
 

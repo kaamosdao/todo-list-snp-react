@@ -9,7 +9,7 @@ import { useInputRef } from '../hooks';
 
 import TodoInputEditing from './TodoInputEditing';
 
-import s from './Todo.module.scss';
+import s from './styles/Todo.module.scss';
 
 const cn = classNames.bind(s);
 

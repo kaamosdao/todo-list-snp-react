@@ -10,7 +10,7 @@ import { useInputRef } from '../hooks';
 
 import InputCheckAll from './InputCheckAll';
 
-import s from './TextField.module.scss';
+import s from './styles/TextField.module.scss';
 
 const TextField = () => {
   const dispatch = useDispatch();

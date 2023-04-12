@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { removeTodo, updateTodo } from '../slices/todoReducer';
 
-import s from './TodoInputEditing.module.scss';
+import s from './styles/TodoInputEditing.module.scss';
 
 const TodoInputEditing = ({ id, title, status, isEditing, setIsEditing }) => {
   const dispatch = useDispatch();
