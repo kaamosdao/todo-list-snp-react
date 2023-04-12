@@ -2,9 +2,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 
+import filters from '../types/types';
+import LocalStorageData from '../utils/localStorageData';
+
+const localStorageTodo = new LocalStorageData('todosTestTask');
+
+const getInitTodos = () => {
+  if (localStorageTodo.hasData()) {
+    return localStorageTodo.getData().todos;
+  }
+  return [];
+};
+
+const getInitFilter = () => {
+  if (localStorageTodo.hasData()) {
+    return localStorageTodo.getData().todoFilter;
+  }
+  return filters.all;
+};
+
 const initialState = {
-  items: [],
-  filter: 'all',
+  items: getInitTodos(),
+  filter: getInitFilter(),
 };
 
 const todoSlice = createSlice({
