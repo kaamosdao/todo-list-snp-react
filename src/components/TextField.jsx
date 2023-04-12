@@ -7,6 +7,7 @@ import { addTodo } from '../slices/todoReducer';
 import selectTodoItems from '../slices/todoSelector';
 
 import { useInputRef } from '../hooks';
+import { todoStatus } from '../types/types';
 
 import InputCheckAll from './InputCheckAll';
 
@@ -40,7 +41,7 @@ const TextField = () => {
       const newTodo = {
         id: _.uniqueId(),
         title: trimmedTitle,
-        status: 'active',
+        status: todoStatus.active,
       };
       dispatch(addTodo(newTodo));
     };
@@ -66,7 +67,7 @@ const TextField = () => {
     const newTodo = {
       id: _.uniqueId(),
       title: trimmedTitle,
-      status: 'active',
+      status: todoStatus.active,
     };
 
     if (event.key === 'Enter') {

@@ -13,6 +13,7 @@ import {
 } from '../slices/todoSelector';
 
 import { useInputRef } from '../hooks';
+import filters from '../types/types';
 
 import s from './styles/TodosHeader.module.scss';
 
@@ -33,21 +34,21 @@ const TodosHeader = () => {
     if (inputRef.current.value.trim()) {
       return;
     }
-    dispatch(setTodoFilter('all'));
+    dispatch(setTodoFilter(filters.all));
   };
 
   const handleClickActive = () => {
     if (inputRef.current.value.trim()) {
       return;
     }
-    dispatch(setTodoFilter('active'));
+    dispatch(setTodoFilter(filters.active));
   };
 
   const handleClickCompleted = () => {
     if (inputRef.current.value.trim()) {
       return;
     }
-    dispatch(setTodoFilter('completed'));
+    dispatch(setTodoFilter(filters.completed));
   };
 
   const handleClearCompleted = () => {
@@ -69,7 +70,7 @@ const TodosHeader = () => {
         <li>
           <button
             className={cn('buttonFilter', {
-              buttonFilterSelected: todoFilter === 'all',
+              buttonFilterSelected: todoFilter === filters.all,
             })}
             type="button"
             name="all"
@@ -81,7 +82,7 @@ const TodosHeader = () => {
         <li>
           <button
             className={cn('buttonFilter', {
-              buttonFilterSelected: todoFilter === 'active',
+              buttonFilterSelected: todoFilter === filters.active,
             })}
             type="button"
             name="active"
@@ -93,7 +94,7 @@ const TodosHeader = () => {
         <li>
           <button
             className={cn('buttonFilter', {
-              buttonFilterSelected: todoFilter === 'completed',
+              buttonFilterSelected: todoFilter === filters.completed,
             })}
             type="button"
             name="completed"

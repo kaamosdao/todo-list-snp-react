@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setTodoFilter, setTodos } from '../slices/todoReducer';
 import selectTodoItems, { selectTodoFilter } from '../slices/todoSelector';
+
 import { useLocalStorage } from '../hooks/index.js';
+import filters from '../types/types';
 
 import Todo from './Todo';
 
@@ -32,7 +34,9 @@ const TodosList = () => {
   return (
     <ul className={s.list}>
       {todos
-        .filter(({ status }) => todoFilter === 'all' || status === todoFilter)
+        .filter(
+          ({ status }) => todoFilter === filters.all || status === todoFilter
+        )
         .map(({ id, title, status }) => (
           <Todo id={id} title={title} status={status} key={id} />
         ))}

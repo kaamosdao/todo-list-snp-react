@@ -8,6 +8,8 @@ import selectTodoItems, {
   selectTodosCount,
 } from '../slices/todoSelector';
 
+import { todoStatus } from '../types/types';
+
 import s from './styles/InputCheckAll.module.scss';
 
 const cn = classNames.bind(s);
@@ -32,7 +34,9 @@ const InputCheckAll = () => {
   const handleCheckAll = (event) => {
     event.stopPropagation();
     const newTodos = todos.map((todo) => {
-      const newStatus = event.target.checked ? 'completed' : 'active';
+      const newStatus = event.target.checked
+        ? todoStatus.completed
+        : todoStatus.active;
       return { ...todo, status: newStatus };
     });
     setCheckAll(event.target.checked);
