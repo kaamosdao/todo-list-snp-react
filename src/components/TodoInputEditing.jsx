@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { removeTodo, updateTodo } from '../slices/todoReducer';
 
-import s from './TodoInputEditing.module.scss';
+import s from './styles/TodoInputEditing.module.scss';
 
 const TodoInputEditing = ({ id, title, status, isEditing, setIsEditing }) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const TodoInputEditing = ({ id, title, status, isEditing, setIsEditing }) => {
     }
   }, [isEditing]);
 
-  const handleBlur = () => {
+  const editTodo = () => {
     const newTitle = editingValue.trim();
 
     if (!newTitle) {
@@ -29,6 +29,10 @@ const TodoInputEditing = ({ id, title, status, isEditing, setIsEditing }) => {
     dispatch(updateTodo(newTodo));
     setEditingValue(newTitle);
     setIsEditing(false);
+  };
+
+  const handleBlur = () => {
+    editTodo();
   };
 
   const handleEditingValue = (event) => {
@@ -40,16 +44,7 @@ const TodoInputEditing = ({ id, title, status, isEditing, setIsEditing }) => {
       return;
     }
 
-    const newTitle = editingValue.trim();
-
-    if (!newTitle) {
-      dispatch(removeTodo(id));
-    }
-
-    const newTodo = { id, title: newTitle, status };
-    dispatch(updateTodo(newTodo));
-    setEditingValue(newTitle);
-    setIsEditing(false);
+    editTodo();
   };
 
   return (
